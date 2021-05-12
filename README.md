@@ -31,8 +31,8 @@
 (_All UI related elements and their view models should go in here:_)
     - adapter
     - view
-        - activity (_contains the app activities: SignIn, SignUp, MainActivity_)
-        - fragment (_All fragments accessed by drawer menu_)
+        - activity 
+        - fragment 
     - viewmodel
 
 - utils
