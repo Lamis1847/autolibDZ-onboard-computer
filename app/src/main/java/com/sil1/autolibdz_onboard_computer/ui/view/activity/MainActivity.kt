@@ -1,4 +1,4 @@
-package com.sil1.autolibdz_onboard_computer.ui.view
+package com.sil1.autolibdz_onboard_computer.ui.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
