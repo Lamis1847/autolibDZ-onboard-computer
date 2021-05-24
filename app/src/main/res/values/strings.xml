@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">autolibDZ-onboard-computer</string>
+<<<<<<< HEAD
+
+    <!--Login PAGE-->
+    <string name="codepin">Veuillez entrer le code PIN</string>
+    <!--END OF Login PAGE-->
+=======
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -18,4 +24,5 @@
     <string name="unite">DA</string>
     <string name="mssgAlert">Veulliez quitter le vehicule immediatement ou vous serait facturer d’une sanction en</string>
 
+>>>>>>> develop
 </resources>
