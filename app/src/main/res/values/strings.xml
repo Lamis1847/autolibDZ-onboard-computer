@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">autolibDZ-onboard-computer</string>
+
+    <!--Login PAGE-->
+    <string name="codepin">Veuillez entrer le code PIN</string>
+    <!--END OF Login PAGE-->
 </resources>
