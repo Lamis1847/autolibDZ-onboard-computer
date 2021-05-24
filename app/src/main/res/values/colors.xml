@@ -11,5 +11,7 @@
     <color name="green">#FF2DCE89</color>
     <color name="greyRectangle">#FFF5F3F5</color>
     <color name="redRectangle">#FFE82E2E</color>
+    <color name="yellowRectangle">#FFFFCB00</color>
+
 
 </resources>

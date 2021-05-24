@@ -17,18 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.HomeFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fragment"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -38,7 +26,6 @@
         android:textColor="@color/blackMenu"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
         app:layout_constraintStart_toEndOf="@+id/fragment"
         app:layout_constraintTop_toTopOf="@+id/fragment" />
 
@@ -47,8 +34,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fragment"
         app:srcCompat="@drawable/ic_logo_home" />
+
+    <fragment
+        android:id="@+id/nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/graphe1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

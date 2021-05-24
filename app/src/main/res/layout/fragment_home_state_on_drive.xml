@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.activity.HomeFragment">
+    tools:context=".ui.view.activity.HomeStateOnDriveFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,8 +28,8 @@
                 android:id="@+id/textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/moneyToPay"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -37,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tarifTotal1"
+                android:id="@+id/tarifTotal2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
@@ -58,21 +59,21 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintTop_toTopOf="@+id/tarifTotal2" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/estimateTime"
+                android:text="@string/timeLeft"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
-                android:id="@+id/tempEstime1"
+                android:id="@+id/tempEstime2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -90,9 +91,9 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ic_rectangle_vert"
+            android:background="@drawable/ic_rectangle_moy"
             android:backgroundTint="@color/blackMenu"
-            app:layout_constraintEnd_toStartOf="@+id/naviguerButton1"
+            app:layout_constraintEnd_toStartOf="@+id/quitterVehiculeButton2"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
@@ -120,10 +121,10 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/ic_rectangle_vert"
+            android:background="@drawable/ic_rectangle_moy"
             android:backgroundTint="@color/greyRectangle"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            app:layout_constraintStart_toEndOf="@+id/naviguerButton1"
+            app:layout_constraintStart_toEndOf="@+id/quitterVehiculeButton2"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
             <ImageView
@@ -157,19 +158,19 @@
             android:textColor="@color/blackMenu"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/conduireButton1"
+            app:layout_constraintBottom_toTopOf="@+id/naviguerButton2"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/naviguerButton1"
+            android:id="@+id/naviguerButton2"
             android:layout_width="250dp"
             android:layout_height="180dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/ic_rectangle_small"
             android:backgroundTint="@color/greyRectangle"
-            app:layout_constraintEnd_toStartOf="@+id/quitterVehiculeButton1"
-            app:layout_constraintStart_toEndOf="@+id/conduireButton1"
-            app:layout_constraintTop_toTopOf="@+id/conduireButton1">
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -197,13 +198,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/quitterVehiculeButton1"
+            android:id="@+id/quitterVehiculeButton2"
             android:layout_width="250dp"
             android:layout_height="180dp"
             android:background="@drawable/ic_rectangle_small"
             android:backgroundTint="@color/redRectangle"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            app:layout_constraintTop_toTopOf="@+id/conduireButton1">
+            app:layout_constraintEnd_toStartOf="@+id/conduireButton1"
+            app:layout_constraintStart_toEndOf="@+id/naviguerButton2"
+            app:layout_constraintTop_toTopOf="@+id/naviguerButton2">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -233,44 +235,10 @@
             android:id="@+id/conduireButton1"
             android:layout_width="250dp"
             android:layout_height="180dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/ic_rectangle_small"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+            app:layout_constraintTop_toTopOf="@+id/naviguerButton2">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/ic_icar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/drive"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/startDriving"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -300,7 +268,7 @@
             app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
 
         <TextView
-            android:id="@+id/borneDepart1"
+            android:id="@+id/borneDepart2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -311,7 +279,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <TextView
-            android:id="@+id/borneArrivee1"
+            android:id="@+id/borneArrivee2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"

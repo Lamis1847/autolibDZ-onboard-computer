@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graphe1"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_homeStateOnDriveFragment"
+            app:destination="@id/homeStateOnDriveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeStateOnDriveFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.HomeStateOnDriveFragment"
+        android:label="fragment_home_state_on_drive"
+        tools:layout="@layout/fragment_home_state_on_drive" >
+        <action
+            android:id="@+id/action_homeStateOnDriveFragment_to_homeStateOnLateFragment"
+            app:destination="@id/homeStateOnLateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeStateOnLateFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.HomeStateOnLateFragment"
+        android:label="fragment_home_state_on_late"
+        tools:layout="@layout/fragment_home_state_on_late" />
+</navigation>

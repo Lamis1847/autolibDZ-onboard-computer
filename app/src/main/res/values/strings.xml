@@ -2,4 +2,20 @@
     <string name="app_name">autolibDZ-onboard-computer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Home fragments-->
+    <string name="moneyToPay">Votre Forfait</string>
+    <string name="estimateTime">Temp estime</string>
+    <string name="timeLeft">Temp restant</string>
+
+    <string name="departBorne">Borne de depart</string>
+    <string name="arriveBorne">Borne d arrivee</string>
+    <string name="cammande">Commandes</string>
+    <string name="drive">Conduire</string>
+    <string name="startDriving">Demarer le véhicule </string>
+    <string name="navigate">Naviguer</string>
+    <string name="stopCar">Quitter le véhicule</string>
+    <string name="unite">DA</string>
+    <string name="mssgAlert">Veulliez quitter le vehicule immediatement ou vous serait facturer d’une sanction en</string>
+
 </resources>
