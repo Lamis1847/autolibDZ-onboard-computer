@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.view.activity.MenuBarFragment" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_rectangle_menu"
+        android:backgroundTint="@color/blackMenu">
+
+        <ImageView
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="@+id/homeButton"
+            app:layout_constraintStart_toStartOf="@+id/homeButton"
+            app:layout_constraintTop_toBottomOf="@+id/homeButton" />
+
+        <ImageView
+            android:id="@+id/alertButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_alert"
+            app:layout_constraintEnd_toEndOf="@+id/homeButton"
+            app:layout_constraintStart_toStartOf="@+id/homeButton"
+            app:layout_constraintTop_toBottomOf="@+id/settingButton" />
+
+        <ImageView
+            android:id="@+id/appButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_icon__3_"
+            app:layout_constraintEnd_toEndOf="@+id/homeButton"
+            app:layout_constraintStart_toStartOf="@+id/homeButton"
+            app:layout_constraintTop_toBottomOf="@+id/alertButton" />
+
+        <ImageView
+            android:id="@+id/triangleAlertButton"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/ic_triangle_alert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/homeButton"
+            app:layout_constraintStart_toStartOf="@+id/homeButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
