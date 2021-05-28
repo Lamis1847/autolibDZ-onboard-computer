@@ -9,8 +9,8 @@ import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.HomeFragment
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.NavigationActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
