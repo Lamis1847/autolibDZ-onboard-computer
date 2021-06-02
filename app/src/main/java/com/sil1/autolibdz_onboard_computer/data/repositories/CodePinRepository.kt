@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
+import com.beust.klaxon.Klaxon
 import com.google.gson.Gson
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.NavigationActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +30,7 @@ class CodePinRepository  {
             code: String
         ) {
 
-            var loginBody = CodePinBody(5, code)
+            var loginBody = CodePinBody(456749, code)
             val loginRequest = api.codePinLogin(loginBody)
 
             loginRequest.enqueue(object : Callback<CodePin> {
@@ -53,11 +53,8 @@ class CodePinRepository  {
                         val myIntent = Intent(context, MainActivity::class.java)
                         context.startActivity(myIntent)
 
-                        /*userToken = resp?.token.toString()
-
-                        var jwt = JWT(userToken)
-                        var claimID = jwt.getClaim("id") //claimID to have the connected user's ID
-                        var claimRole = jwt.getClaim("role") //claimRole to have the connected user's role*/
+                        /*val result = Klaxon()
+                            .parse<Reservation>()*/
 
                     }
                 }
