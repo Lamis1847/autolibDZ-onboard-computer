@@ -53,12 +53,7 @@ class CodePinRepository  {
                         val myIntent = Intent(context, MainActivity::class.java)
                         context.startActivity(myIntent)
 
-                        /*userToken = resp?.token.toString()
-
-                        var jwt = JWT(userToken)
-                        var claimID = jwt.getClaim("id") //claimID to have the connected user's ID
-                        var claimRole = jwt.getClaim("role") //claimRole to have the connected user's role*/
-
+                        println(resp?.reservation?.idBorneDepart)
                     }
                 }
 
