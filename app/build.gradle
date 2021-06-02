@@ -83,4 +83,7 @@ dependencies {
 
     //MAPS
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
+    //json object to java object
+    implementation 'com.beust:klaxon:5.5'
 }

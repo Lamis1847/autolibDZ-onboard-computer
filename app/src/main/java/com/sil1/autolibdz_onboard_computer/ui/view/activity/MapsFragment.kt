@@ -14,6 +14,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.utils.borneDLal
+import com.sil1.autolibdz_onboard_computer.utils.borneDLong
+import com.sil1.autolibdz_onboard_computer.utils.borneFLal
+import com.sil1.autolibdz_onboard_computer.utils.borneFLong
 
 class MapsFragment : Fragment() {
 
@@ -27,9 +31,12 @@ class MapsFragment : Fragment() {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val dep = LatLng(borneDLal, borneDLong)
+        googleMap.addMarker(MarkerOptions().position(dep).title("Marker Depart"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dep))
+        val dest = LatLng(borneFLal, borneFLong)
+        googleMap.addMarker(MarkerOptions().position(dest).title("Marker Destination"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest))
     }
 
     override fun onCreateView(
