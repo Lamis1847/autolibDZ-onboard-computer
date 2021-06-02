@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.beust.klaxon.Klaxon
 import com.google.gson.Gson
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
+import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,13 +49,19 @@ class CodePinRepository  {
 
                     } else {
                         val resp = response.body()
+                        if(resp!=null){ //shared prefernces ?
+                            locName = resp.locataire.nom
+                            /*borneDLong = resp.borneDepart.longitude
+                            borneDLal = resp.borneDepart.latitude
+                            borneFLong = resp.borneDestination.longitude
+                            borneFLal = resp.borneDestination.latitude
+                            borneDName = resp.borneDepart.nomBorne
+                            borneFName = resp.borneDestination.nomBorne
+                            tempsRestant = resp.reservation.tempsEstime*/
+                        }
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
                         val myIntent = Intent(context, MainActivity::class.java)
                         context.startActivity(myIntent)
-
-                        /*val result = Klaxon()
-                            .parse<Reservation>()*/
-
                     }
                 }
 

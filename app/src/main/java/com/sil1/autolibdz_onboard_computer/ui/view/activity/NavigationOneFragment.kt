@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.utils.borneDName
+import com.sil1.autolibdz_onboard_computer.utils.borneFName
 import kotlinx.android.synthetic.main.fragment_navigation_one.*
 
 
@@ -24,6 +26,9 @@ class NavigationOneFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        departTextView.text = borneDName
+        destinationTextView.text = borneFName
 
         constraintLayoutDemarrer.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_navigationOneFragment_to_navigationTwoFragment)
