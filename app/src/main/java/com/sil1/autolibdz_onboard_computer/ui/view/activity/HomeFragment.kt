@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
 
         conduireButton1.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
-
         }
 
     }
