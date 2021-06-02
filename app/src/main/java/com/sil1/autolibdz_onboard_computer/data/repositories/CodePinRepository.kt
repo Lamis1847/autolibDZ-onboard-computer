@@ -50,7 +50,7 @@ class CodePinRepository  {
                     } else {
                         val resp = response.body()
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-                        val myIntent = Intent(context, MainActivity::class.java)
+                        val myIntent = Intent(context, NavigationActivity::class.java)
                         context.startActivity(myIntent)
 
                         /*userToken = resp?.token.toString()
