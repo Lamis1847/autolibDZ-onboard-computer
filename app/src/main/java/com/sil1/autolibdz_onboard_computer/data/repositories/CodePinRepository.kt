@@ -9,7 +9,8 @@ import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
+import com.sil1.autolibdz_onboard_computer.data.model.InfotrajetModel
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.NavigationActivity
 import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,7 +28,8 @@ class CodePinRepository  {
 
         fun codePin(
             context: Context,
-            code: String
+            code: String,
+            vm: InfotrajetModel
         ) {
 
             var loginBody = CodePinBody(456749, code)
@@ -50,7 +52,9 @@ class CodePinRepository  {
                     } else {
                         val resp = response.body()
                         if(resp!=null){ //shared prefernces ?
+
                             locName = resp.locataire.nom
+                            vm.locataire.nom="chergui"
                             /*borneDLong = resp.borneDepart.longitude
                             borneDLal = resp.borneDepart.latitude
                             borneFLong = resp.borneDestination.longitude

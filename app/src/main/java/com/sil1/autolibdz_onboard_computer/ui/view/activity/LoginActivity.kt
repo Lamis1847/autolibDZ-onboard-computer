@@ -2,10 +2,11 @@ package com.sil1.autolibdz_onboard_computer.ui.view.activity
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.alimuzaffar.lib.pin.PinEntryEditText
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.data.model.InfotrajetModel
 import com.sil1.autolibdz_onboard_computer.data.repositories.CodePinRepository
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -18,8 +19,9 @@ class LoginActivity : AppCompatActivity() {
         val pinEntry = findViewById<View>(R.id.txt_pin_entry) as PinEntryEditText
         pinEntry.setOnPinEnteredListener { str ->
             validerBoutton.setOnClickListener {
+                val vm= ViewModelProvider(this).get(InfotrajetModel::class.java)
                 var loginActivity = CodePinRepository.Companion
-                loginActivity.codePin(this,str.toString())
+                loginActivity.codePin(this,str.toString(),vm)
             }
         }
 
