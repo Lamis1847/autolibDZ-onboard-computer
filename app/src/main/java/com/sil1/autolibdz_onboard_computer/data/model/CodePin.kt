@@ -1,8 +1,10 @@
 package com.sil1.autolibdz_onboard_computer.data.model
 
-data class CodePin(var success : Boolean,
+import java.io.Serializable
+
+data class CodePin (var success : Boolean,
                    var reservation : Reservation,
-                   var borneDepart : Borne,
-                   var borneDestination : Borne,
+                   var bornDepart : Borne,
+                   var bornDestination : Borne,
                    var locataire : Locataire
 )
