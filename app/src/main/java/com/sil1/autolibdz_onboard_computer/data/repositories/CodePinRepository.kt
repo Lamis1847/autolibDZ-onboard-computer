@@ -3,15 +3,14 @@ package com.sil1.autolibdz_onboard_computer.data.repositories
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.widget.Toast
 import com.google.gson.Gson
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
-import com.sil1.autolibdz_onboard_computer.data.model.InfotrajetModel
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.NavigationActivity
 import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,14 +26,18 @@ class CodePinRepository  {
         }
 
 
+        @SuppressLint("RestrictedApi")
         fun codePin(
             context: Context,
-            code: String,
-            vm: InfotrajetModel
+            code: String
         ) {
-
             var loginBody = CodePinBody(5, "9762")
+
             val loginRequest = api.codePinLogin(loginBody)
+            val sharedPref = context.getSharedPreferences(
+                sharedPrefFile, Context.MODE_PRIVATE
+            )
+
 
             loginRequest.enqueue(object : Callback<CodePin> {
 
@@ -53,24 +56,26 @@ class CodePinRepository  {
 
                     } else {
                         val resp = response.body()
-                        if(resp!=null){ //shared prefernces ?
-                            locName = "hey"
-                                //resp.locataire.nom
-                            /*borneDLong = resp.borneDepart.longitude
-                            borneDLal = resp.borneDepart.latitude
-                            borneFLong = resp.borneDestination.longitude
-                            borneFLal = resp.borneDestination.latitude
-                            borneDName = resp.borneDepart.nomBorne
-                            borneFName = resp.borneDestination.nomBorne
-                            tempsRestant = resp.reservation.tempsEstime
-                            Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-                            val myIntent = Intent(context, MainActivity::class.java)
-                            myIntent.putExtra("data",CodePin(resp.locataire))
-                            context.startActivity(myIntent)*/
 
+                        if (resp != null) {
+                            with(sharedPref?.edit()) {
+                                this?.putString("nom_loc", resp.locataire.nom)
+                                this?.putString("borneDName", resp.bornDepart.nomBorne)
+                                this?.putString("borneFName", resp.bornDestination.nomBorne)
+                                this?.putDouble("borneDLong",resp.bornDepart.longitude)
+                                this?.putDouble("borneDLal",resp.bornDepart.latitude)
+                                this?.putDouble("borneFLal",resp.bornDestination.latitude)
+                                this?.putDouble("borneFLong",resp.bornDestination.longitude)
+                                this?.putInt("tempsRestant", resp.reservation.tempsEstime)
+                                this?.apply()
+                            }
                         }
 
+                        Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
+                        val myIntent = Intent(context, MainActivity::class.java)
+                        context.startActivity(myIntent)
                     }
+
                 }
 
                 override fun onFailure(call: Call<CodePin>, t: Throwable) {
@@ -78,5 +83,12 @@ class CodePinRepository  {
                 }
             })
         }
+
+        inline fun SharedPreferences.Editor.putDouble(key: String, value: Double): SharedPreferences.Editor {
+            putLong(key, value.toRawBits())
+            return this
+        }
+
+        fun SharedPreferences.getDouble(key: String, defValue: Double) = Double.fromBits(getLong(key, defValue.toRawBits()))
     }
 }

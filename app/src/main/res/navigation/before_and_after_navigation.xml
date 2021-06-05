@@ -17,5 +17,9 @@
         android:id="@+id/navigationTwoFragment"
         android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.NavigationTwoFragment"
         android:label="fragment_navigation_two"
-        tools:layout="@layout/fragment_navigation_two" />
+        tools:layout="@layout/fragment_navigation_two" >
+        <action
+            android:id="@+id/action_navigationTwoFragment_to_navigationOneFragment"
+            app:destination="@id/navigationOneFragment" />
+    </fragment>
 </navigation>
