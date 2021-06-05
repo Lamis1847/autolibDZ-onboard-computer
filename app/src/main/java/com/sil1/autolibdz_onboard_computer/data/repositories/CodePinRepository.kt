@@ -10,6 +10,7 @@ import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
 import com.sil1.autolibdz_onboard_computer.data.model.InfotrajetModel
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.NavigationActivity
 import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
@@ -32,7 +33,7 @@ class CodePinRepository  {
             vm: InfotrajetModel
         ) {
 
-            var loginBody = CodePinBody(456749, code)
+            var loginBody = CodePinBody(5, "9762")
             val loginRequest = api.codePinLogin(loginBody)
 
             loginRequest.enqueue(object : Callback<CodePin> {
@@ -45,6 +46,7 @@ class CodePinRepository  {
                             response.errorBody()!!.charStream(),
                             CodePin::class.java
                         )
+                        println(response.errorBody())
                         Toast.makeText(context, "CODE PIN éronné", Toast.LENGTH_LONG).show()
                         val resp = response.body()
 
@@ -52,20 +54,22 @@ class CodePinRepository  {
                     } else {
                         val resp = response.body()
                         if(resp!=null){ //shared prefernces ?
-
-                            locName = resp.locataire.nom
-                            vm.locataire.nom="chergui"
+                            locName = "hey"
+                                //resp.locataire.nom
                             /*borneDLong = resp.borneDepart.longitude
                             borneDLal = resp.borneDepart.latitude
                             borneFLong = resp.borneDestination.longitude
                             borneFLal = resp.borneDestination.latitude
                             borneDName = resp.borneDepart.nomBorne
                             borneFName = resp.borneDestination.nomBorne
-                            tempsRestant = resp.reservation.tempsEstime*/
+                            tempsRestant = resp.reservation.tempsEstime
+                            Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
+                            val myIntent = Intent(context, MainActivity::class.java)
+                            myIntent.putExtra("data",CodePin(resp.locataire))
+                            context.startActivity(myIntent)*/
+
                         }
-                        Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-                        val myIntent = Intent(context, NavigationActivity::class.java)
-                        context.startActivity(myIntent)
+
                     }
                 }
 
