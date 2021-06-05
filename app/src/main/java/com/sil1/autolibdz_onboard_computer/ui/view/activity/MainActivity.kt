@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val preferences = getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val nom = preferences.getString("nom_loc", "defaultValue")
+        val nom = preferences.getString("nom_loc", "User")
 
         locataireName.text= "Bonjour "+nom
 
