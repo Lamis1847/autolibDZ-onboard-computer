@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.activity_main.*

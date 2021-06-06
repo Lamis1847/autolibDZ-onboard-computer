@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_onboard_computer.ui.view.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,12 +28,16 @@ class HomeStateOnDriveFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+       val preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val depart = preferences?.getString("borneDName", "defaultValue")
         val arrivee = preferences?.getString("borneFName", "defaultValue")
         borneDepart2.text= depart
         borneArrivee2.text=arrivee
         //juste pour tester
+        naviguerButton2.setOnClickListener {
+            val intent = Intent(context,NavigationActivity::class.java)
+            startActivity(intent)
+        }
         quitterVehiculeButton2.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_homeStateOnDriveFragment_to_homeStateOnLateFragment)
 

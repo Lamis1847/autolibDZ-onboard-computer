@@ -10,6 +10,7 @@ import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
+import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
@@ -17,7 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class CodePinRepository  {
+class CodePinRepository {
 
     companion object {
 
@@ -43,6 +44,8 @@ class CodePinRepository  {
 
                 @SuppressLint("RestrictedApi")
                 override fun onResponse(call: Call<CodePin>, response: Response<CodePin>) {
+                    val myIntent = Intent(context, MainActivity::class.java)
+
                     if (!response.isSuccessful()) {
                         val gson = Gson()
                         val message: CodePin = gson.fromJson(
@@ -62,17 +65,31 @@ class CodePinRepository  {
                                 this?.putString("nom_loc", resp.locataire.nom)
                                 this?.putString("borneDName", resp.bornDepart.nomBorne)
                                 this?.putString("borneFName", resp.bornDestination.nomBorne)
-                                this?.putDouble("borneDLong",resp.bornDepart.longitude)
-                                this?.putDouble("borneDLal",resp.bornDepart.latitude)
-                                this?.putDouble("borneFLal",resp.bornDestination.latitude)
-                                this?.putDouble("borneFLong",resp.bornDestination.longitude)
+                                this?.putDouble("borneDLong", resp.bornDepart.longitude)
+                                this?.putDouble("borneDLal", resp.bornDepart.latitude)
+                                this?.putDouble("borneFLal", resp.bornDestination.latitude)
+                                this?.putDouble("borneFLong", resp.bornDestination.longitude)
                                 this?.putInt("tempsRestant", resp.reservation.tempsEstime)
                                 this?.apply()
                             }
+                         myIntent.putExtra(
+                                "res", Reservation(
+                                    resp.reservation.idReservation,
+                                    resp.reservation.etat,
+                                    resp.reservation.idVehicule,
+                                    resp.reservation.idLocataire,
+                                    resp.reservation.idBorneDepart,
+                                    resp.reservation.idBorneDestination,
+                                    resp.reservation.codePin,
+                                    resp.reservation.tempsEstime,
+                                    resp.reservation.distanceEstime,
+                                    resp.reservation.prixEstime
+                                )
+                            )
                         }
 
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-                        val myIntent = Intent(context, MainActivity::class.java)
+
                         context.startActivity(myIntent)
                     }
 
@@ -84,11 +101,20 @@ class CodePinRepository  {
             })
         }
 
-        inline fun SharedPreferences.Editor.putDouble(key: String, value: Double): SharedPreferences.Editor {
+        inline fun SharedPreferences.Editor.putDouble(
+            key: String,
+            value: Double
+        ): SharedPreferences.Editor {
             putLong(key, value.toRawBits())
             return this
         }
 
-        fun SharedPreferences.getDouble(key: String, defValue: Double) = Double.fromBits(getLong(key, defValue.toRawBits()))
+        fun SharedPreferences.getDouble(key: String, defValue: Double) =
+            Double.fromBits(getLong(key, defValue.toRawBits()))
     }
 }
+
+private fun Intent.putExtra(s: String, reservation: Reservation) {
+
+}
+
