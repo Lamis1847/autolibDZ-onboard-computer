@@ -13,6 +13,7 @@ import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
 import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.SuiviActivity
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.TryActivity
 import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,7 +56,6 @@ class CodePinRepository {
                         )
                         println(response.errorBody())
                         Toast.makeText(context, "CODE PIN éronné", Toast.LENGTH_LONG).show()
-                        val resp = response.body()
 
 
                     } else {
@@ -73,7 +73,7 @@ class CodePinRepository {
                                 this?.putInt("tempsRestant", resp.reservation.tempsEstime)
                                 this?.apply()
                             }
-                         myIntent.putExtra(
+                        /* myIntent.putExtra(
                                 "res", Reservation(
                                     resp.reservation.idReservation,
                                     resp.reservation.etat,
@@ -86,11 +86,10 @@ class CodePinRepository {
                                     resp.reservation.distanceEstime,
                                     resp.reservation.prixEstime
                                 )
-                            )
+                            )*/
                         }
 
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
-
                         context.startActivity(myIntent)
                     }
 
