@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/suivi_navigation"
+    app:startDestination="@id/suiviOneFragment">
+
+    <fragment
+        android:id="@+id/suiviOneFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.SuiviOneFragment"
+        android:label="fragment_suivi_one"
+        tools:layout="@layout/fragment_suivi_one" />
+    <fragment
+        android:id="@+id/suiviTwoFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.SuiviTwoFragment"
+        android:label="fragment_suivi_two"
+        tools:layout="@layout/fragment_suivi_two" />
+</navigation>

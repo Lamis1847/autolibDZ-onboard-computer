@@ -12,6 +12,7 @@ import com.sil1.autolibdz_onboard_computer.data.model.CodePin
 import com.sil1.autolibdz_onboard_computer.data.model.CodePinBody
 import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.SuiviActivity
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.TryActivity
 import com.sil1.autolibdz_onboard_computer.utils.*
 import retrofit2.Call
@@ -45,7 +46,7 @@ class CodePinRepository {
 
                 @SuppressLint("RestrictedApi")
                 override fun onResponse(call: Call<CodePin>, response: Response<CodePin>) {
-                    val myIntent = Intent(context, MainActivity::class.java)
+                    val myIntent = Intent(context, SuiviActivity::class.java)
 
                     if (!response.isSuccessful()) {
                         val gson = Gson()
