@@ -35,15 +35,15 @@ class HomeFragment : Fragment() {
         val arrivee = preferences?.getString("borneFName", "defaultValue")
         borneDepart1.text= depart
         borneArrivee1.text=arrivee
-        val currentDateTime = LocalDateTime.now()
+//        val currentDateTime = LocalDateTime.now()
 
-        conduireButton1.setOnClickListener {
+       /* conduireButton1.setOnClickListener {
             var startTrajetActivity = trajetRepository.Companion
             startTrajetActivity.startTrajet(view,requireContext().applicationContext, Reservation(59,"Active",5,3,4,9,"9762",3000,
                 80.0,900.0
             ),currentDateTime.toString())
           //  view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
-        }
+        }*/
 
         naviguerButton1.setOnClickListener {
 
