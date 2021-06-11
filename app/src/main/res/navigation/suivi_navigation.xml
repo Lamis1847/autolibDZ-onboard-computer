@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/suiviOneFragment"
-        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.SuiviOneFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.suivi_etat.SuiviOneFragment"
         android:label="fragment_suivi_one"
         tools:layout="@layout/fragment_suivi_one" />
     <fragment
         android:id="@+id/suiviTwoFragment"
-        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.SuiviTwoFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.suivi_etat.SuiviTwoFragment"
         android:label="fragment_suivi_two"
         tools:layout="@layout/fragment_suivi_two" />
 </navigation>

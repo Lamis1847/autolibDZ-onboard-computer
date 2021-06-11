@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup"
+    app:startDestination="@id/reportPanneOneFragment">
+
+    <fragment
+        android:id="@+id/reportPanneOneFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.ReportPanneOneFragment"
+        android:label="fragment_report_panne_one"
+        tools:layout="@layout/fragment_report_panne_one" >
+        <action
+            android:id="@+id/action_reportPanneOneFragment_to_firstPopUpFragment"
+            app:destination="@id/firstPopUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstPopUpFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.FirstPopUpFragment"
+        android:label="fragment_first_pop_up"
+        tools:layout="@layout/fragment_first_pop_up" />
+</navigation>
