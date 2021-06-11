@@ -22,7 +22,6 @@
         android:layout_width="808dp"
         android:layout_height="109dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/myrect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/suiviImageView"
@@ -103,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Température de l'huile"
+            android:text="Régulateur de vitesse"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold"
@@ -118,7 +117,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_temp_yellow"
+            android:src="@drawable/ic_vitesse"
             app:layout_constraintStart_toStartOf="@+id/tempTextView"
             app:layout_constraintTop_toBottomOf="@+id/tempTextView" />
 
@@ -223,7 +222,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="157dp"
+        android:layout_width="186dp"
         android:layout_height="94dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
@@ -233,15 +232,15 @@
 
         <TextView
             android:id="@+id/textViewPanne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="27dp"
             android:layout_marginTop="16dp"
-            android:text="Pannes"
+            android:text="Pression huile moteur"
             android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
