@@ -28,5 +28,29 @@
     <!--mapbox-->
     <string name="access_token">pk.eyJ1IjoibWN6IiwiYSI6ImNrcG84OHQ2ejBhd2kydm1uenBwb3Y2bDcifQ.Gxn6kINp46z61MU2RXkO2Q</string>
 
+    <!--Signelemnt de pannes-->
+    <string-array name="panne_moteur">
+        <item>Problèmes d’allumage moteur</item>
+        <item>Une baisse de puissance et de performance</item>
+        <item>Problèmes de combustion</item>
+        <item>Bougies d’allumage en panne</item>
+    </string-array>
 
+    <string-array name="panne_m">
+        <item>Problèmes d’allumage moteur</item>
+        <item>Une baisse de puissance et de performance</item>
+        <item>Problèmes de combustion</item>
+        <item>Bougies d’allumage en panne</item>
+    </string-array>
+
+    <string-array name="panne_q">
+        <item>Problèmes d’allumage moteur</item>
+        <item>Une baisse de puissance et de performance</item>
+        <item>Problèmes de combustion</item>
+        <item>Bougies d’allumage en panne</item>
+    </string-array>
+
+    <string name="prompt">Select Mode</string>
+
+    <!--FIN Signelemnt de pannes-->
 </resources>

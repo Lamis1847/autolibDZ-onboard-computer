@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.view.activity.SuiviOneFragment">
+    tools:context=".ui.view.activity.suivi_etat.SuiviOneFragment">
 
     <fragment
         android:id="@+id/fragment"
