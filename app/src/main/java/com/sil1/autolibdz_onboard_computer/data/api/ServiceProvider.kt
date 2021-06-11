@@ -20,5 +20,5 @@ interface ServiceProvider {
     ): Call<startTrajetRequest>
 
     @GET("api/vehicules/{id}")
-    fun getVehicule(@Path("id") id:String): Call<Vehicule>
+    fun getVehicule(@Path("id") id: Int): Call<Vehicule>
 }

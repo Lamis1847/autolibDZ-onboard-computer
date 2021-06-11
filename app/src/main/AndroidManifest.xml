@@ -19,7 +19,7 @@
         android:theme="@style/Theme.AutolibDZonboardcomputer">
         <activity android:name=".ui.view.activity.LoginActivity"
             android:screenOrientation="landscape"/>
-        <activity android:name=".ui.view.activity.suivi_etat.SuiviActivity"
+        <activity android:name=".ui.view.activity.report_panne.ReportPanneActivity"
             android:screenOrientation="landscape"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -38,7 +38,7 @@
             android:screenOrientation="landscape" />
         <activity android:name=".ui.view.activity.MainActivity" />
         <activity
-            android:name=".ui.view.activity.report_panne.ReportPanneActivity"
+            android:name=".ui.view.activity.suivi_etat.SuiviActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>

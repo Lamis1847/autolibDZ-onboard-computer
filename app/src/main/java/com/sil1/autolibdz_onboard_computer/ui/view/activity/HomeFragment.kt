@@ -12,8 +12,14 @@ import androidx.annotation.RequiresApi
 import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.data.repositories.trajetRepository
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.ReportPanneActivity
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.suivi_etat.SuiviActivity
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_menu_bar.*
+import kotlinx.android.synthetic.main.fragment_report_panne_one.*
+import kotlinx.android.synthetic.main.fragment_report_panne_one.fragment
+import kotlinx.android.synthetic.main.fragment_suivi_one.*
 import java.time.LocalDateTime
 
 class HomeFragment : Fragment() {
@@ -52,5 +58,14 @@ class HomeFragment : Fragment() {
 
         }
 
+        /*fragment.appButton.setOnClickListener {
+            val myIntent = Intent(context, SuiviActivity::class.java)
+            startActivity(myIntent)
+        }
+
+        fragment.triangleAlertButton.setOnClickListener {
+            val myIntent = Intent(context, ReportPanneActivity::class.java)
+            startActivity(myIntent)
+        }*/
     }
 }
