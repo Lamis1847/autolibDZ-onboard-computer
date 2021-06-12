@@ -4,14 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.data.repositories.trajetRepository
+import com.sil1.autolibdz_onboard_computer.utils.reservationG
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDateTime
@@ -23,6 +25,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -36,21 +39,27 @@ class HomeFragment : Fragment() {
         borneDepart1.text= depart
         borneArrivee1.text=arrivee
         val currentDateTime = LocalDateTime.now()
+        val reservation: Reservation
+
 
         conduireButton1.setOnClickListener {
             var startTrajetActivity = trajetRepository.Companion
-            startTrajetActivity.startTrajet(view,requireContext().applicationContext, Reservation(59,"Active",5,3,4,9,"9762",3000,
-                80.0,900.0
-            ),currentDateTime.toString())
-          //  view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
+            reservationG.etat= "Active"
+            startTrajetActivity.startTrajet(
+                view, requireContext().applicationContext, reservationG, currentDateTime.toString()
+            )
+            println(reservationG)
+
+            //  view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
         }
 
         naviguerButton1.setOnClickListener {
 
-            val intent = Intent(context,NavigationActivity::class.java)
+            val intent = Intent(context, NavigationActivity::class.java)
             startActivity(intent)
 
         }
 
     }
+
 }
