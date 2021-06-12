@@ -34,7 +34,7 @@ class CodePinRepository {
             context: Context,
             code: String
         ) {
-            var loginBody = CodePinBody(5, "9762")
+            var loginBody = CodePinBody(5,"9762")
 
             val loginRequest = api.codePinLogin(loginBody)
             val sharedPref = context.getSharedPreferences(
@@ -55,7 +55,6 @@ class CodePinRepository {
                         )
                         println(response.errorBody())
                         Toast.makeText(context, "CODE PIN éronné", Toast.LENGTH_LONG).show()
-                        val resp = response.body()
 
 
                     } else {
@@ -75,10 +74,10 @@ class CodePinRepository {
                                 this?.apply()
                             }
 
-
                         }
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
                         val myIntent = Intent(context, MainActivity::class.java)
+
                         context.startActivity(myIntent)
                     }
 

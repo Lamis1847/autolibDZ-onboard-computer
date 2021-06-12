@@ -4,6 +4,7 @@
 
     <!--Login PAGE-->
     <string name="codepin">Veuillez entrer le code PIN</string>
+    <string name="maintenance">Espace Maintenance</string>
     <!--END OF Login PAGE-->
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -24,4 +25,32 @@
     <string name="unite">DA</string>
     <string name="mssgAlert">Veulliez quitter le vehicule immediatement ou vous serait facturer d’une sanction en</string>
 
+    <!--mapbox-->
+    <string name="access_token">pk.eyJ1IjoibWN6IiwiYSI6ImNrcG84OHQ2ejBhd2kydm1uenBwb3Y2bDcifQ.Gxn6kINp46z61MU2RXkO2Q</string>
+
+    <!--Signelemnt de pannes-->
+    <string-array name="panne_moteur">
+        <item>Problèmes d’allumage moteur</item>
+        <item>Une baisse de puissance et de performance</item>
+        <item>Problèmes de combustion</item>
+        <item>Bougies d’allumage en panne</item>
+    </string-array>
+
+    <string-array name="panne_m">
+        <item>Problèmes d’allumage moteur</item>
+        <item>Une baisse de puissance et de performance</item>
+        <item>Problèmes de combustion</item>
+        <item>Bougies d’allumage en panne</item>
+    </string-array>
+
+    <string-array name="panne_q">
+        <item>Problèmes d’allumage moteur</item>
+        <item>Une baisse de puissance et de performance</item>
+        <item>Problèmes de combustion</item>
+        <item>Bougies d’allumage en panne</item>
+    </string-array>
+
+    <string name="prompt">Select Mode</string>
+
+    <!--FIN Signelemnt de pannes-->
 </resources>

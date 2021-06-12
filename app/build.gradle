@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -16,6 +17,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures{
+        dataBinding true
+        viewBinding = true
     }
 
     buildTypes {
@@ -86,4 +92,11 @@ dependencies {
 
     //json object to java object
     implementation 'com.beust:klaxon:5.5'
+
+    kapt "com.android.databinding:compiler:3.4.0"
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
+
 }
