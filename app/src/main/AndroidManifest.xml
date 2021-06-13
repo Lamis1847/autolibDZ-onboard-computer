@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AutolibDZonboardcomputer">
-        <activity android:name=".ui.view.activity.MapActivity"></activity>
+        <activity android:name=".ui.view.activity.MapLocationActivity"></activity>
+        <activity android:name=".ui.view.activity.MapActivity" />
         <activity
             android:name=".ui.view.activity.LoginActivity"
             android:screenOrientation="landscape">
@@ -49,7 +50,7 @@
         <activity
             android:name=".ui.view.activity.suivi_etat.SuiviActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
     </application>
 
 </manifest>

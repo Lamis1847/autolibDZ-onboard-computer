@@ -1,47 +1,51 @@
 package com.sil1.autolibdz_onboard_computer.ui.view.activity
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.mapbox.android.core.location.LocationEngineProvider
-import com.mapbox.android.core.location.LocationEngineRequest
-import com.mapbox.android.core.permissions.PermissionsListener
-import com.mapbox.android.core.permissions.PermissionsManager
-import com.mapbox.api.directions.v5.models.DirectionsRoute
-import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.location.LocationComponent
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute
-import com.sil1.autolibdz_onboard_computer.R
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_map.*
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.mapbox.android.core.location.LocationEngineCallback
+import com.mapbox.android.core.location.LocationEngineProvider
+import com.mapbox.android.core.location.LocationEngineRequest
 import com.mapbox.android.core.location.LocationEngineResult
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.api.directions.v5.models.DirectionsResponse
+import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.Point
+import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.location.LocationComponent
 import com.mapbox.mapboxsdk.location.modes.CameraMode
-import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher
-import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions
-import java.text.SimpleDateFormat
+import com.mapbox.mapboxsdk.maps.MapView
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions
+import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute
-import java.lang.ref.WeakReference
+import com.sil1.autolibdz_onboard_computer.R
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_map.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.ref.WeakReference
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 private lateinit var myRef: DatabaseReference
 
@@ -158,6 +162,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
             }
         }
     }
+
 
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
@@ -322,10 +327,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         }
     }
 
-    private class LocationListeningCallback internal constructor(activity: MainActivity) :
+    private class LocationListeningCallback internal constructor(activity: MapActivity) :
         LocationEngineCallback<LocationEngineResult> {
 
-        private val activityWeakReference: WeakReference<MainActivity>
+        private val activityWeakReference: WeakReference<MapActivity>
 
         init {
             this.activityWeakReference = WeakReference(activity)
