@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "163789577006",
+    "firebase_url": "https://mapstest-70c5d-default-rtdb.firebaseio.com",
+    "project_id": "mapstest-70c5d",
+    "storage_bucket": "mapstest-70c5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163789577006:android:134b9b113a8e22efa0b8bf",
+        "android_client_info": {
+          "package_name": "com.example.mapboxdemokotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163789577006-sqb8hgai7qge1328c0kp5v9k4kjole2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ZNQagTJpokkFZ49m6LUhRKCSolEK73w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163789577006-sqb8hgai7qge1328c0kp5v9k4kjole2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163789577006:android:e924e9d256aa0dd1a0b8bf",
+        "android_client_info": {
+          "package_name": "com.example.mapstest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163789577006-sqb8hgai7qge1328c0kp5v9k4kjole2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ZNQagTJpokkFZ49m6LUhRKCSolEK73w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163789577006-sqb8hgai7qge1328c0kp5v9k4kjole2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163789577006:android:e27041562ec65bd3a0b8bf",
+        "android_client_info": {
+          "package_name": "com.sil1.autolibdz_onboard_computer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163789577006-sqb8hgai7qge1328c0kp5v9k4kjole2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4ZNQagTJpokkFZ49m6LUhRKCSolEK73w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163789577006-sqb8hgai7qge1328c0kp5v9k4kjole2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
