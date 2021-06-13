@@ -8,12 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+
 import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.repositories.CodePinRepository.Companion.getDouble
 import com.sil1.autolibdz_onboard_computer.utils.*
@@ -21,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_navigation_one.*
 
 class MapsFragment : Fragment() {
 
-    private val callback = OnMapReadyCallback { googleMap ->
+  /*  private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
@@ -35,7 +30,7 @@ class MapsFragment : Fragment() {
         val borneDLal = preferences?.getDouble("borneDLal",0.0)
         val markerD =  preferences?.getString("borneDName","defalut")
         val borneDLong = preferences?.getDouble("borneDLong",0.0)
-        val dep = LatLng(borneDLal!!, borneDLong!!)
+      /*  val dep = LatLng(borneDLal!!, borneDLong!!)
         googleMap.addMarker(MarkerOptions().position(dep).title(markerD))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(dep))
 
@@ -45,9 +40,9 @@ class MapsFragment : Fragment() {
         val markerF =  preferences?.getString("borneFName","defalut")
         val dest = LatLng(borneFLal!!, borneFLong!!)
         googleMap.addMarker(MarkerOptions().position(dest).title(markerF))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(dest))*/
 
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,8 +54,8 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+      /*  val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        mapFragment?.getMapAsync(callback)*/
     }
 
 }
