@@ -99,16 +99,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         buttonstart.setOnClickListener {
             onMapClick1()
         }
-        btnStart.setOnClickListener { v: View? ->
-            val simulateRoute = true
-            val options = NavigationLauncherOptions.builder()
-                .directionsRoute(currentRoute)
-                .shouldSimulateRoute(simulateRoute)
-                .build()
 
-            // Call this method with Context from within an Activity
-            NavigationLauncher.startNavigation(this, options)
-        }
         mapView.onCreate(savedInstanceState);
         mapView?.getMapAsync(this)
     }
