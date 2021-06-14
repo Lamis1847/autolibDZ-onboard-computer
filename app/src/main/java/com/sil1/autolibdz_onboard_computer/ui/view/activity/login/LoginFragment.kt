@@ -1,4 +1,4 @@
-package com.sil1.autolibdz_onboard_computer.ui.view.activity
+package com.sil1.autolibdz_onboard_computer.ui.view.activity.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

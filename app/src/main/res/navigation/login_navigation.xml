@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/codePinFragment"
-        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.CodePinFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.login.CodePinFragment"
         android:label="fragment_code_pin"
         tools:layout="@layout/fragment_code_pin" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.LoginFragment"
+        android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
