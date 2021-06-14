@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -11,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.sil1.autolibdz_onboard_computer"
-        minSdkVersion 22
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -50,6 +51,7 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -88,15 +90,19 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
 
     //MAPS
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+  //  implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
     //json object to java object
     implementation 'com.beust:klaxon:5.5'
 
     kapt "com.android.databinding:compiler:3.4.0"
 
-    implementation 'com.google.code.gson:gson:2.8.5'
+   // implementation 'com.google.code.gson:gson:2.8.5'
 
-
+    //Mapbox dependencies
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1'
+    implementation 'com.mapbox.navigation:android:2.0.0-beta.12'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-geojson:5.8.0'
 
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Parcelable
 import android.widget.Toast
 import com.google.gson.Gson
 import com.sil1.autolibdz_onboard_computer.data.api.ServiceBuilder
@@ -19,6 +20,7 @@ import retrofit2.Response
 
 
 class CodePinRepository {
+    lateinit var resv: Reservation
 
     companion object {
 
@@ -32,7 +34,7 @@ class CodePinRepository {
             context: Context,
             code: String
         ) {
-            var loginBody = CodePinBody(6, code)
+            var loginBody = CodePinBody(5,"9762")
 
             val loginRequest = api.codePinLogin(loginBody)
             val sharedPref = context.getSharedPreferences(
@@ -44,7 +46,6 @@ class CodePinRepository {
 
                 @SuppressLint("RestrictedApi")
                 override fun onResponse(call: Call<CodePin>, response: Response<CodePin>) {
-                    val myIntent = Intent(context, MainActivity::class.java)
 
                     if (!response.isSuccessful()) {
                         val gson = Gson()
@@ -61,6 +62,7 @@ class CodePinRepository {
 
                         if (resp != null) {
                             with(sharedPref?.edit()) {
+                                reservationG = resp.reservation
                                 this?.putString("nom_loc", resp.locataire.nom)
                                 this?.putString("borneDName", resp.bornDepart.nomBorne)
                                 this?.putString("borneFName", resp.bornDestination.nomBorne)
@@ -71,23 +73,11 @@ class CodePinRepository {
                                 this?.putInt("tempsRestant", resp.reservation.tempsEstime)
                                 this?.apply()
                             }
-                        /* myIntent.putExtra(
-                                "res", Reservation(
-                                    resp.reservation.idReservation,
-                                    resp.reservation.etat,
-                                    resp.reservation.idVehicule,
-                                    resp.reservation.idLocataire,
-                                    resp.reservation.idBorneDepart,
-                                    resp.reservation.idBorneDestination,
-                                    resp.reservation.codePin,
-                                    resp.reservation.tempsEstime,
-                                    resp.reservation.distanceEstime,
-                                    resp.reservation.prixEstime
-                                )
-                            )*/
-                        }
 
+                        }
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
+                        val myIntent = Intent(context, MainActivity::class.java)
+
                         context.startActivity(myIntent)
                     }
 
@@ -112,7 +102,5 @@ class CodePinRepository {
     }
 }
 
-private fun Intent.putExtra(s: String, reservation: Reservation) {
 
-}
 
