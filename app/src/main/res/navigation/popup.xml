@@ -9,7 +9,7 @@
         android:id="@+id/reportPanneOneFragment"
         android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.ReportPanneOneFragment"
         android:label="fragment_report_panne_one"
-        tools:layout="@layout/fragment_report_panne_one" >
+        tools:layout="@layout/fragment_panne_moteur" >
         <action
             android:id="@+id/action_reportPanneOneFragment_to_firstPopUpFragment"
             app:destination="@id/firstPopUpFragment" />
@@ -18,5 +18,5 @@
         android:id="@+id/firstPopUpFragment"
         android:name="com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.FirstPopUpFragment"
         android:label="fragment_first_pop_up"
-        tools:layout="@layout/fragment_first_pop_up" />
+        tools:layout="@layout/fragment_description" />
 </navigation>

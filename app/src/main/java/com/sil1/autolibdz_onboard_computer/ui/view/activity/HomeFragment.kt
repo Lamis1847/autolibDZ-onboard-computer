@@ -19,8 +19,6 @@ import com.sil1.autolibdz_onboard_computer.ui.view.activity.suivi_etat.SuiviActi
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
-import kotlinx.android.synthetic.main.fragment_report_panne_one.*
-import kotlinx.android.synthetic.main.fragment_report_panne_one.fragment
 import kotlinx.android.synthetic.main.fragment_suivi_one.*
 import java.time.LocalDateTime
 

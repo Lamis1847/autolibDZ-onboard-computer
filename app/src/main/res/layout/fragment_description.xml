@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/editTextDescription"
             android:layout_width="352dp"
             android:layout_height="161dp"
             android:layout_marginTop="16dp"
@@ -54,10 +54,10 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="#FFCB00"
             android:text="Envoyer"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/editTextDescription"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintStart_toStartOf="@+id/editTextDescription"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
