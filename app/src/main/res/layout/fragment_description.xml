@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.view.activity.report_panne.FirstPopUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayoutDescription"
-        android:layout_width="378dp"
-        android:layout_height="283dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textView30"
-            android:layout_width="87dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="16dp"
-            android:text="Desciption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Description"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.048"
@@ -32,12 +34,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
+            android:gravity="top"
             android:id="@+id/editTextDescription"
-            android:layout_width="352dp"
-            android:layout_height="161dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_input_background"
             android:ems="10"
+            android:padding="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:hint="Ecrire ici"
             android:inputType="textCapSentences|textMultiLine"
             android:maxLength="2000"
@@ -49,11 +55,15 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="351dp"
-            android:layout_height="44dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="20dp"
             android:backgroundTint="#FFCB00"
-            android:text="Envoyer"
+            android:layout_marginBottom="10dp"
+            android:text="Confirmer et Envoyer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextDescription"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editTextDescription"

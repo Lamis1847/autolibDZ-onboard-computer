@@ -23,7 +23,6 @@ class PanneRepository {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-
         @SuppressLint("RestrictedApi")
         fun putPanne(
             context: Context,
@@ -34,8 +33,6 @@ class PanneRepository {
         ) {
 
             val panne = Panne(idVehicule, description, longitude,latitude)
-
-            println(panne)
 
             val panneRequest = api.putPanne(panne)
 
@@ -52,7 +49,6 @@ class PanneRepository {
                         )
                         println(response.errorBody())
                         Toast.makeText(context, "Veuillez ré-essayer", Toast.LENGTH_LONG).show()
-
 
                     } else {
 

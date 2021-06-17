@@ -3,60 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.view.activity.report_panne.PanneExtFragment">
 
     <TextView
         android:id="@+id/textView31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="113dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
         android:text="Description"
         android:textColor="@color/black"
-        android:textSize="19dp"
+        android:background="@drawable/ic_rectangle_blanc"
+        android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
-        android:layout_width="0dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="523dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/ic_rectangle_blanc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="@+id/textView31"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView31">
 
         <RadioButton
             android:id="@+id/radioButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Problèmes d'éclairage (phares, feux, ampoules" />
+            android:text="Problèmes d'éclairage (phares, feux, ampoules)"
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Problèmes au niveau des retroviseu" />
+            android:text="Problèmes au niveau des retroviseu"
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Problèmes au niveau des vitres (casse , fissuré)" />
+            android:text="Problèmes au niveau des vitres (casse , fissuré)"
+            android:textSize="15sp" />
     </RadioGroup>
 
     <Button
         android:id="@+id/button"
-        android:layout_width="363dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="12dp"
-        android:text="Button"
+        android:layout_width="530dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#FFCB00"
+        android:text="Confirmer et Envoyer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintHorizontal_bias="0.628"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

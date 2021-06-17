@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
 
+        appButton.setOnClickListener {
+            val myIntent = Intent(this, SuiviActivity::class.java)
+            startActivity(myIntent)
+        }
+
     }
 
 }

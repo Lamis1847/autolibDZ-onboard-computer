@@ -1,73 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/textView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="105dp"
+        android:layout_height="34dp"
         android:text="Description"
         android:textColor="@color/black"
-        android:textSize="19dp"
+        android:textSize="19sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="440dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/white"
-        android:orientation="vertical"
+        android:layout_width="517dp"
+        android:layout_height="198dp"
+        android:background="@drawable/ic_rectangle_blanc"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView30">
 
         <RadioButton
             android:id="@+id/r4"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="Problèmes de la chaîne ou la chaîne de distribution"
-            android:textSize="18dp" />
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/r1"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="La défaillance du circuit de refroidissement"
-            android:textSize="18dp" />
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/r2"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="Problèmes d’allumage et d’électricité du moteur"
-            android:textSize="18dp" />
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/r3"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:text="Refroidissement du moteur"
-            android:textSize="18dp" />
+            android:textSize="15sp" />
 
     </RadioGroup>
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="443dp"
+        android:layout_width="515dp"
         android:layout_height="51dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#FFCB00"
-        android:text="Envoyer"
+        android:text="Confirmer et Envoyer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,7 +64,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_map)
         var locationEngine = LocationEngineProvider.getBestLocationEngine(this)
         val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
         val DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.utils.reservationG
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_state_on_drive.*
@@ -33,9 +34,12 @@ class HomeStateOnDriveFragment : Fragment() {
         val arrivee = preferences?.getString("borneFName", "defaultValue")
         borneDepart2.text= depart
         borneArrivee2.text=arrivee
+        tarifTotal2.text = reservationG.prixEstime.toString()
+        tempEstime2.text = reservationG.tempsEstime.toString()+" minutes"
+
         //juste pour tester
         naviguerButton2.setOnClickListener {
-            val intent = Intent(context,NavigationActivity::class.java)
+            val intent = Intent(context,MapActivity::class.java)
             startActivity(intent)
         }
         quitterVehiculeButton2.setOnClickListener {

@@ -28,19 +28,17 @@ class CodePinRepository {
             ServiceBuilder.buildService(ServiceProvider::class.java)
         }
 
-
         @SuppressLint("RestrictedApi")
         fun codePin(
             context: Context,
             code: String
         ) {
-            var loginBody = CodePinBody(5,"9762")
+            var loginBody = CodePinBody(1837,code)
 
             val loginRequest = api.codePinLogin(loginBody)
             val sharedPref = context.getSharedPreferences(
                 sharedPrefFile, Context.MODE_PRIVATE
             )
-
 
             loginRequest.enqueue(object : Callback<CodePin> {
 
@@ -59,7 +57,6 @@ class CodePinRepository {
 
                     } else {
                         val resp = response.body()
-
                         if (resp != null) {
                             with(sharedPref?.edit()) {
                                 reservationG = resp.reservation
@@ -73,16 +70,13 @@ class CodePinRepository {
                                 this?.putInt("tempsRestant", resp.reservation.tempsEstime)
                                 this?.apply()
                             }
-
                         }
                         Toast.makeText(context, "Connexion établie", Toast.LENGTH_SHORT).show()
                         val myIntent = Intent(context, MainActivity::class.java)
 
                         context.startActivity(myIntent)
                     }
-
                 }
-
                 override fun onFailure(call: Call<CodePin>, t: Throwable) {
                     Toast.makeText(context, "Erreur", Toast.LENGTH_SHORT).show()
                 }
