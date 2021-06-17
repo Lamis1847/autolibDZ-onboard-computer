@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
 import kotlinx.android.synthetic.main.fragment_suivi_one.*
 import java.time.LocalDateTime
+import kotlinx.android.synthetic.main.fragment_menu_bar.*
 
 class HomeFragment : Fragment() {
 
@@ -40,20 +41,24 @@ class HomeFragment : Fragment() {
         val preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val depart = preferences?.getString("borneDName", "defaultValue")
         val arrivee = preferences?.getString("borneFName", "defaultValue")
+
         borneDepart1.text= depart
         borneArrivee1.text=arrivee
+        tarifTotal1.text = reservationG.prixEstime.toString()
+        tempEstime1.text = reservationG.tempsEstime.toString()+" minutes"
 
-        val currentDateTime = LocalDateTime.now()
+
+        //val currentDateTime = LocalDateTime.now()
         val reservation: Reservation
 
 
         conduireButton1.setOnClickListener {
             var startTrajetActivity = trajetRepository.Companion
             reservationG.etat= "Active"
-            startTrajetActivity.startTrajet(
+            /*startTrajetActivity.startTrajet(
                 view, requireContext().applicationContext, reservationG, currentDateTime.toString()
             )
-            println(reservationG)
+            println(reservationG)*/
             // view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
         }
 
@@ -61,20 +66,11 @@ class HomeFragment : Fragment() {
 
         naviguerButton1.setOnClickListener {
 
-            val intent = Intent(context, NavigationActivity::class.java)
+            val intent = Intent(context, MapActivity::class.java)
             startActivity(intent)
 
         }
 
-        /*fragment.appButton.setOnClickListener {
-            val myIntent = Intent(context, SuiviActivity::class.java)
-            startActivity(myIntent)
-        }
-
-        fragment.triangleAlertButton.setOnClickListener {
-            val myIntent = Intent(context, ReportPanneActivity::class.java)
-            startActivity(myIntent)
-        }*/
     }
 
 }

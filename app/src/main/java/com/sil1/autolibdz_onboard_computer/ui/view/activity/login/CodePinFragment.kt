@@ -33,9 +33,9 @@ class CodePinFragment : Fragment() {
             }
         }
 
-        maintenance.setOnClickListener {
+        /*maintenance.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_codePinFragment_to_loginFragment)
-        }
+        }*/
 
     }
 

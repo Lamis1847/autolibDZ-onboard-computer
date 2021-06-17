@@ -60,7 +60,7 @@
         android:layout_width="347dp"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/myrect"
+        android:backgroundTint="#FFCB00"
         android:text="VALIDER"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,21 +83,5 @@
         app:pinBackgroundDrawable="@drawable/mycodepin"
         app:pinBackgroundIsSquare="false"
         app:pinRepeatedHint="X" />
-
-    <Button
-        android:id="@+id/maintenance"
-        android:layout_width="180dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/ic_rectangle_orange"
-        android:text="Maintenance"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toEndOf="@+id/validerBoutton"
-        app:layout_constraintTop_toBottomOf="@+id/numericKeyboard"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

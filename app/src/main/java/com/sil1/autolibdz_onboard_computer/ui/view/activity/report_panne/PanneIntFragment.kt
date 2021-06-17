@@ -37,7 +37,7 @@ class PanneIntFragment : DialogFragment() {
             val lal = preferences?.getFloat("panneLal",1F)
 
             var reportPanne = PanneRepository.Companion
-            reportPanne.putPanne(requireContext(),123333, result, long, lal)
+            reportPanne.putPanne(requireContext(),1837, result, long, lal)
 
 
             dismiss()

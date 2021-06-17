@@ -20,7 +20,7 @@ class SuiviActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_suivi_one)
 
         var vehiculeGet = SuiviRepository.Companion
-        vehiculeGet.vehicule(this.applicationContext, 123333)
+        vehiculeGet.vehicule(this.applicationContext, 1837)
 
         val preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val limitVit = preferences?.getInt("limiteurVitesse", 0)
@@ -59,14 +59,14 @@ class SuiviActivity : AppCompatActivity() {
             tempRealText.text = regVit.toString()+" KM/H"
         }
 
-        /*fragment.homeButton.setOnClickListener {
+        homeButton.setOnClickListener {
             val myIntent = Intent(this, MainActivity::class.java)
             startActivity(myIntent)
         }
 
-        fragment.triangleAlertButton.setOnClickListener {
+        triangleAlertButton.setOnClickListener {
             val myIntent = Intent(this, ReportPanneActivity::class.java)
             startActivity(myIntent)
-        }*/
+        }
     }
 }
