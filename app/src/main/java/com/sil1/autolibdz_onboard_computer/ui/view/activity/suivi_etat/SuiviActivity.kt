@@ -8,11 +8,14 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.repositories.SuiviRepository
+import com.sil1.autolibdz_onboard_computer.data.repositories.UpdateVehiculeRepository
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.ReportPanneActivity
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
 import kotlinx.android.synthetic.main.suivi_etat.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.NonCancellable.isActive
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -22,9 +25,9 @@ class SuiviActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.suivi_etat)
 
-        val preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        var preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         var vehiculeGet = SuiviRepository.Companion
-        val id = preferences.getInt("idVehicule", 0)
+        var id = preferences.getInt("idVehicule", 0)
         vehiculeGet.vehicule(this.applicationContext, id)
 
 
@@ -52,33 +55,149 @@ class SuiviActivity : AppCompatActivity() {
             tempRealText.text = regVit.toString()+" KM/H"
 
 
-            /*marche bien
             Handler().postDelayed({
 
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
-                var vehiculeGet = SuiviRepository.Companion
-                val id = preferences.getInt("idVehicule", 0)
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
                 vehiculeGet.vehicule(this.applicationContext, id)
 
-
-                var pressionPneu = preferences?.getInt("pressionPneus", 0)
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
                 var s1 = soustract(pressionPneu!!)
                 textView18.text = s1+" Bar"
-                //ajouter a la base de données la valeur s qui est modifiée
 
-                var chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
                 var s2 = soustract(chargeBatt!!)
                 textView17.text = s2+" %"
-
-                var niveauHuile = preferences?.getInt("niveauMinimumHuile", 0)
-                var s3 = soustract(niveauHuile!!)
-                textView21.text = s3+" litres"
 
                 val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
                 var s4 = soustract(pressionHuile!!)
                 textView20.text = s4+" Bar"
-                }, 10000)*/
 
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 10000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 20000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 5000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 15000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 25000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 30000)
 
         } else {
             constraintLayout5.setBackgroundColor(Color.RED)
@@ -103,21 +222,6 @@ class SuiviActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
     }
-
-    /*fun soustract1(a : String, b : String, c : String) {
-            textView23.text =(a.toInt()-1).toString()+" Bar"
-            textView18.text = (b.toInt()-1).toString()+" %"
-            textView17.text = (c.toInt()-1).toString()+" Bar"
-
-
-        /*if (a.toInt()!= 0) {
-            Handler().postDelayed({
-            soustract((a.toInt()-1).toString(), (b.toInt()-1).toString(),
-                (c.toInt()-1).toString(), (d.toInt()-1).toString(), (e.toInt()-1).toString(), (f.toInt()-1).toString(),
-                (g.toInt()-1).toString())
-            }, 5000)
-        }*/
-    }*/
 
     fun soustract(a : Int) : String {
         val s = a-1
