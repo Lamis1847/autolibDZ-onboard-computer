@@ -29,7 +29,9 @@ class DescriptionFragment : DialogFragment() {
             val lal = preferences?.getFloat("panneLal",1F)
 
             var reportPanne = PanneRepository.Companion
-            reportPanne.putPanne(requireContext(),1837, text, long, lal)
+
+            val id = preferences?.getInt("idVehicule", 0)
+            reportPanne.putPanne(requireContext(),id!!, text, long, lal)
 
             dismiss()
         }

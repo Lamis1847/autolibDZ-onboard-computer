@@ -33,12 +33,13 @@ class CodePinRepository {
             context: Context,
             code: String
         ) {
-            var loginBody = CodePinBody(1837,code)
-
-            val loginRequest = api.codePinLogin(loginBody)
             val sharedPref = context.getSharedPreferences(
                 sharedPrefFile, Context.MODE_PRIVATE
             )
+            val id = sharedPref.getInt("idVehicule", 0)
+            var loginBody = CodePinBody(id,code)
+
+            val loginRequest = api.codePinLogin(loginBody)
 
             loginRequest.enqueue(object : Callback<CodePin> {
 
@@ -67,7 +68,10 @@ class CodePinRepository {
                                 this?.putDouble("borneDLal", resp.bornDepart.latitude)
                                 this?.putDouble("borneFLal", resp.bornDestination.latitude)
                                 this?.putDouble("borneFLong", resp.bornDestination.longitude)
+                                this?.putDouble("borneFLong", resp.bornDestination.longitude)
                                 this?.putInt("tempsRestant", resp.reservation.tempsEstime)
+                                this?.putDouble("prix estime", resp.reservation.prixEstime)
+
                                 this?.apply()
                             }
                         }

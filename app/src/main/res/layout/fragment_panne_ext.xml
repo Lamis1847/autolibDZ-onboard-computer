@@ -10,7 +10,7 @@
         android:id="@+id/textView31"
         android:layout_width="113dp"
         android:layout_height="35dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:text="Description"
         android:textColor="@color/black"
         android:background="@drawable/ic_rectangle_blanc"
@@ -23,8 +23,10 @@
 
     <RadioGroup
         android:id="@+id/radioGroup2"
-        android:layout_width="523dp"
+        android:layout_width="match_parent"
         android:layout_height="166dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/ic_rectangle_blanc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +58,14 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="530dp"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#FFCB00"
         android:text="Confirmer et Envoyer"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.628"
