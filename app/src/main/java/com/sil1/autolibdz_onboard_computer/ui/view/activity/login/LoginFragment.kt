@@ -25,10 +25,6 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        retourMaint.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_loginFragment_to_codePinFragment)
-        }
-
     }
 
 }

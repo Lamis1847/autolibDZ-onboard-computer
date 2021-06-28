@@ -19,9 +19,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
-        android:layout_width="808dp"
+        android:layout_width="match_parent"
         android:layout_height="109dp"
         android:layout_marginTop="16dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/suiviImageView"
