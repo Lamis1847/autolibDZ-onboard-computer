@@ -18,4 +18,6 @@ data class Vehicule(var numChassis: Int,
                     var idBorne: Int,
                     var idCloudinary: String,
                     var secureUrl: String,
-                    var id: Int)
+                    var id: Int,
+                    var latitude: Float,
+                    var longitude: Float)
