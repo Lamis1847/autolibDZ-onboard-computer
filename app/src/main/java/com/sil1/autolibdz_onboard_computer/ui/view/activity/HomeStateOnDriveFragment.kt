@@ -29,9 +29,11 @@ class HomeStateOnDriveFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-       val preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val depart = preferences?.getString("borneDName", "defaultValue")
-        val arrivee = preferences?.getString("borneFName", "defaultValue")
+       var preferences = this.activity?.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        var depart = preferences?.getString("borneDName", "defaultValue")
+        var arrivee = preferences?.getString("borneFName", "defaultValue")
+          preferences?.getString("dateBeginTrajet", "2021-06-28 15:06:57")
+
         borneDepart2.text= depart
         borneArrivee2.text=arrivee
         tarifTotal2.text = reservationG.prixEstime.toString()

@@ -19,6 +19,13 @@ interface ServiceProvider {
         @Body info: startTrajetBody
     ): Call<startTrajetRequest>
 
+
+    @POST("api/trajet/createDebutTrajet")
+    fun finTrajet(
+        @Body info: finTrajetBody
+    ): Call<finTrajetRequest>
+
+
     @GET("api/vehicules/{id}")
     fun getVehicule(@Path("id") id: Int): Call<Vehicule>
 

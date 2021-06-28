@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.data.repositories.trajetRepository
@@ -20,8 +21,10 @@ import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
 import kotlinx.android.synthetic.main.fragment_suivi_one.*
-import java.time.LocalDateTime
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -48,27 +51,23 @@ class HomeFragment : Fragment() {
         tempEstime1.text = reservationG.tempsEstime.toString()+" minutes"
 
 
-        //val currentDateTime = LocalDateTime.now()
-        val reservation: Reservation
 
 
         conduireButton1.setOnClickListener {
+       /*     currentDT =simpleDateFormat.format(Date())
             var startTrajetActivity = trajetRepository.Companion
             reservationG.etat= "Active"
-            /*startTrajetActivity.startTrajet(
-                view, requireContext().applicationContext, reservationG, currentDateTime.toString()
-            )
-            println(reservationG)*/
-            // view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
+            startTrajetActivity.startTrajet(
+                view, requireContext().applicationContext, reservationG, currentDT
+            )*/
+            view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
         }
 
 
 
         naviguerButton1.setOnClickListener {
-
             val intent = Intent(context, MapActivity::class.java)
             startActivity(intent)
-
         }
 
     }

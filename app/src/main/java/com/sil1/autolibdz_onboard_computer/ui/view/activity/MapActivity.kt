@@ -1,14 +1,18 @@
 package com.sil1.autolibdz_onboard_computer.ui.view.activity
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.mapbox.android.core.location.LocationEngineCallback
@@ -32,25 +36,36 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
-import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher
-import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions
+import com.mapbox.mapboxsdk.utils.BitmapUtils
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute
+import com.mapbox.turf.TurfConstants
+import com.mapbox.turf.TurfMeasurement
 import com.sil1.autolibdz_onboard_computer.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.sil1.autolibdz_onboard_computer.data.model.locationFirebase
+import com.sil1.autolibdz_onboard_computer.data.repositories.CodePinRepository.Companion.getDouble
+import com.sil1.autolibdz_onboard_computer.data.repositories.trajetRepository
+import com.sil1.autolibdz_onboard_computer.utils.*
 import kotlinx.android.synthetic.main.activity_map.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Math.abs
 import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 private lateinit var myRef: DatabaseReference
-
+private lateinit var currentDateOfDepart: Date
+private var locationFire = locationFirebase(0,0.0,0.0,0.0)
+private  var latDest: Double = 36.9167 //par defaut
+private  var lonDest: Double = 3.8833
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener,
     MapboxMap.OnMapClickListener {
+    private val geoJsonSourceLayerId = "GeoJsonSourceLayerId"
+    private val symbolIconId = "SymbolIconId"
+    private var support  =supportFragmentManager
 
     private lateinit var mapView: MapView
     private lateinit var mapboxMap: MapboxMap
@@ -68,9 +83,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         var locationEngine = LocationEngineProvider.getBestLocationEngine(this)
         val DEFAULT_INTERVAL_IN_MILLISECONDS = 1000L
         val DEFAULT_MAX_WAIT_TIME = DEFAULT_INTERVAL_IN_MILLISECONDS * 5
+        val preferences =getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        latDest = preferences.getDouble("borneFLal", 36.9167)
+        lonDest = preferences.getDouble("borneFLong",3.8833)
+        val depart = preferences?.getString("borneDName", "defaultValue")
+        val arrivee = preferences?.getString("borneFName", "defaultValue")
+        departTextView.text=depart
+        destinationTextView.text=arrivee
 
         mapView = findViewById(R.id.mapView);
-        val callback = LocationListeningCallback(this)
+        val callback = LocationListeningCallback(this,supportFragmentManager,tempsRestant)
         locationEngine = LocationEngineProvider.getBestLocationEngine(this)
         var request = LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
             .setPriority(LocationEngineRequest.PRIORITY_NO_POWER)
@@ -95,15 +117,56 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         }
         locationEngine.requestLocationUpdates(request, callback, mainLooper)
         locationEngine.getLastLocation(callback)
+        var simpleDateFormat= SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        var currentDT: String = simpleDateFormat.format(Date())
+        val sharedPref = this.getSharedPreferences(
+            sharedPrefFile, Context.MODE_PRIVATE
+        )
 
+        if (ifStartTrajet){
+            buttonstart.setBackgroundColor(Color.parseColor("#FFFFCB00"))
+            tempsRestant.text="Temp restants "+ (40- timeToArrive)
+        }
         buttonstart.setOnClickListener {
             onMapClick1()
+            if (!ifStartTrajet) {
+                buttonstart.setBackgroundColor(Color.parseColor("#FFFFCB00"))
+                currentDT =simpleDateFormat.format(Date())
+                var startTrajetActivity = trajetRepository.Companion
+                reservationG.etat= "Active"
+                startTrajetActivity.startTrajet(
+                    this, reservationG, currentDT
+                )
+                currentDateOfDepart= Date()
+
+                var stop = Time(currentDateOfDepart.hours,currentDateOfDepart.minutes ,currentDateOfDepart.seconds)
+                datebeginTrajet = preferences.getString("dateBeginTrajet", "2021-06-28 18:43:44").toString()
+                var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                var date = format.parse(datebeginTrajet)
+                var start = Time(date.hours, date.minutes, date.seconds)
+
+                timeToArrive =  difference(stop,start)
+                tempsRestant.text="Temp restants from else "+ (timeToArrive)
+
+            }
         }
 
         mapView.onCreate(savedInstanceState);
         mapView?.getMapAsync(this)
     }
+    fun difference(start: Time, stop: Time): Int {
+        val diff = Time(0, 0, 0)
+        if (stop.minutes > start.minutes) {
+            --start.hours
+            start.minutes += 60
+        }
 
+        diff.minutes = start.minutes - stop.minutes
+        diff.hours = start.hours - stop.hours
+
+
+        return abs( diff.hours*60) + abs(diff.minutes)
+    }
     override fun onStart() {
         super.onStart()
         mapView?.onStart()
@@ -139,9 +202,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         mapView?.onDestroy()
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
+   override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-
         mapboxMap.setStyle(getString(R.string.navigation_guidance_day)) { style: Style? ->
             if (style != null) {
                 val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
@@ -149,12 +211,39 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
                 enableLocationComponent(style)
                 addDestinationIconSymbolLayer(style);
                 mapboxMap.addOnMapClickListener(this);
+               /* btnStart.setOnClickListener { v: View? ->
+                    val simulateRoute = true
+                    val options = NavigationLauncherOptions.builder()
+                        .directionsRoute(currentRoute)
+                        .shouldSimulateRoute(simulateRoute)
+                        .build()
+
+                    // Call this method with Context from within an Activity
+                    NavigationLauncher.startNavigation(this, options)
+                }*/
 
             }
+
+            setUpSource(style!!)
+
+            setUpLayer(style!!)
+
+            val drawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_location_on_red_24dp, null)
+            val bitmapUtils = BitmapUtils.getBitmapFromDrawable(drawable)
+            style!!.addImage(symbolIconId, bitmapUtils!!)
         }
     }
 
+    private fun setUpLayer(loadedMapStyle: Style) {
+        loadedMapStyle.addLayer(SymbolLayer("SYMBOL_LAYER_ID", geoJsonSourceLayerId).withProperties(
+            PropertyFactory.iconImage(symbolIconId),
+            PropertyFactory.iconOffset(arrayOf(0f, -8f))
+        ))
+    }
 
+    private fun setUpSource(loadedMapStyle: Style) {
+        loadedMapStyle.addSource(GeoJsonSource(geoJsonSourceLayerId))
+    }
 
     override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
         Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_SHORT)
@@ -181,7 +270,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
     }
 
     override fun onMapClick(point: LatLng): Boolean {
-        /*     val destinationPoint = Point.fromLngLat(point.longitude, point.latitude)
+          /*  val destinationPoint = Point.fromLngLat(point.longitude, point.latitude)
              //val destinationPoint = Point.fromLngLat(36.7762, 3.05997)
              val originPoint = Point.fromLngLat(
                  locationComponent!!.lastKnownLocation!!.longitude,
@@ -193,16 +282,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
 
              getRoute(originPoint, destinationPoint)
              btnStart!!.isEnabled = true
-             btnStart!!.setBackgroundResource(R.color.mapboxBlue)
+        //     btnStart!!.setBackgroundResource(R.color.mapboxBlue)
              Toast.makeText(this, destinationPoint.toString(), Toast.LENGTH_SHORT).show()
              println(destinationPoint)
-     */
+*/
         return true
     }
 
+
     fun onMapClick1(): Boolean {
         // val destinationPoint = Point.fromLngLat(point.longitude, point.latitude)
-        val destinationPoint = Point.fromLngLat(3.183854636465469, 36.70807165777045)
+        val destinationPoint = Point.fromLngLat(lonDest, latDest)
         val originPoint = Point.fromLngLat(
             locationComponent!!.lastKnownLocation!!.longitude,
             locationComponent!!.lastKnownLocation!!.latitude
@@ -318,10 +408,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         }
     }
 
-    private class LocationListeningCallback internal constructor(activity: MapActivity) :
+    private class LocationListeningCallback internal constructor(
+        activity: MapActivity,
+       var supportFragmentManager: FragmentManager,
+       var tmp:TextView
+    ) :
         LocationEngineCallback<LocationEngineResult> {
 
         private val activityWeakReference: WeakReference<MapActivity>
+        private var runCar :Boolean=true
 
         init {
             this.activityWeakReference = WeakReference(activity)
@@ -329,15 +424,39 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
 
         override fun onSuccess(result: LocationEngineResult) {
 
-// The LocationEngineCallback interface's method which fires when the device's location has changed.
+// The LocationEngineCallback interface's method which fires when the device's location has changed
+            locationFire.id=1837
+            locationFire.latitude=result.lastLocation?.latitude!!
+            locationFire.longitude=result.lastLocation?.longitude!!
+            locationFire.distance=TurfMeasurement.distance(Point.fromLngLat(lonDest, latDest),Point.fromLngLat(result.lastLocation?.longitude!!, result.lastLocation?.latitude!!) , TurfConstants.UNIT_KILOMETERS)
+
             myRef =
                 FirebaseDatabase.getInstance("https://mapstest-70c5d-default-rtdb.firebaseio.com")
-                    .getReference("message").child("129")
-            myRef.setValue(result.lastLocation)
-            myRef =
-                FirebaseDatabase.getInstance("https://mapstest-70c5d-default-rtdb.firebaseio.com")
-                    .getReference("message").child("69")
-            myRef.setValue(result.lastLocation)
+                    .getReference("message").child("1837")
+            myRef.setValue(locationFire)
+            if(locationFire.distance<0.2 && runCar){
+                runCar=false
+                val dialog = EndTrajetFragment()
+                dialog.show(supportFragmentManager, "customDialog5")
+
+            }
+            if(ifStartTrajet){
+                currentDateOfDepart= Date()
+                var start = Time(currentDateOfDepart.hours,currentDateOfDepart.minutes ,currentDateOfDepart.seconds)
+                var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                var date = format.parse(datebeginTrajet)
+                var stop = Time(date.hours, date.minutes, date.seconds)
+                val diff = Time(0, 0, 0)
+                if (stop.minutes > start.minutes) {
+                    --start.hours
+                    start.minutes += 60
+                }
+
+                diff.minutes = start.minutes - stop.minutes
+                diff.hours = start.hours - stop.hours
+                tmp.text= "temp restan "+(70-(abs( diff.hours*60) + abs(diff.minutes)))
+                println(abs( diff.hours*60) + abs(diff.minutes))
+            }
             result.getLastLocation()
         }
 
@@ -355,3 +474,4 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
     }
 }
 
+class Time(internal var hours: Int, internal var minutes: Int, internal var seconds: Int)

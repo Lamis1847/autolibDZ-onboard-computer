@@ -16,7 +16,6 @@ import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.repositories.PanneRepository
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
-import kotlinx.android.synthetic.main.fragment_navigation_one.*
 import kotlinx.android.synthetic.main.fragment_panne_ext.*
 import kotlinx.android.synthetic.main.fragment_panne_ext.view.*
 
