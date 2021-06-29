@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentManager
@@ -87,12 +88,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         latDest = preferences.getDouble("borneFLal", 36.9167)
         lonDest = preferences.getDouble("borneFLong",3.8833)
         val depart = preferences?.getString("borneDName", "defaultValue")
+        //idCar = preferences.getInt("idVehicule",0)
+
         val arrivee = preferences?.getString("borneFName", "defaultValue")
         departTextView.text=depart
         destinationTextView.text=arrivee
 
         mapView = findViewById(R.id.mapView);
-        val callback = LocationListeningCallback(this,supportFragmentManager,tempsRestant)
+        val callback = LocationListeningCallback(this,supportFragmentManager,tempsRestant,buttonstart)
         locationEngine = LocationEngineProvider.getBestLocationEngine(this)
         var request = LocationEngineRequest.Builder(DEFAULT_INTERVAL_IN_MILLISECONDS)
             .setPriority(LocationEngineRequest.PRIORITY_NO_POWER)
@@ -118,20 +121,24 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
         locationEngine.requestLocationUpdates(request, callback, mainLooper)
         locationEngine.getLastLocation(callback)
         var simpleDateFormat= SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        var currentDT: String = simpleDateFormat.format(Date())
         val sharedPref = this.getSharedPreferences(
             sharedPrefFile, Context.MODE_PRIVATE
         )
 
-        if (ifStartTrajet){
-            buttonstart.setBackgroundColor(Color.parseColor("#FFFFCB00"))
-            tempsRestant.text="Temp restants "+ (40- timeToArrive)
+        if (ifEndTrajet){
+            buttonstart.setBackgroundColor(Color.parseColor("#FFE82E2E"))
+            tempsRestant.text= "Temp estimé dépassé"
         }
+
+
         buttonstart.setOnClickListener {
             onMapClick1()
             if (!ifStartTrajet) {
+                var currentDT =simpleDateFormat.format(Date())
+                datebeginTrajet =currentDT
                 buttonstart.setBackgroundColor(Color.parseColor("#FFFFCB00"))
                 currentDT =simpleDateFormat.format(Date())
+                datebeginTrajet =currentDT
                 var startTrajetActivity = trajetRepository.Companion
                 reservationG.etat= "Active"
                 startTrajetActivity.startTrajet(
@@ -140,13 +147,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
                 currentDateOfDepart= Date()
 
                 var stop = Time(currentDateOfDepart.hours,currentDateOfDepart.minutes ,currentDateOfDepart.seconds)
-                datebeginTrajet = preferences.getString("dateBeginTrajet", "2021-06-28 18:43:44").toString()
                 var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 var date = format.parse(datebeginTrajet)
                 var start = Time(date.hours, date.minutes, date.seconds)
 
                 timeToArrive =  difference(stop,start)
-                tempsRestant.text="Temp restants from else "+ (timeToArrive)
+                tempsRestant.text="Temp restants "+ (timeToArrive)
 
             }
         }
@@ -410,13 +416,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
 
     private class LocationListeningCallback internal constructor(
         activity: MapActivity,
-       var supportFragmentManager: FragmentManager,
-       var tmp:TextView
+        var supportFragmentManager: FragmentManager,
+        var tmp: TextView,
+        buttonstart: ConstraintLayout
     ) :
         LocationEngineCallback<LocationEngineResult> {
 
         private val activityWeakReference: WeakReference<MapActivity>
         private var runCar :Boolean=true
+        private var button :ConstraintLayout=buttonstart
 
         init {
             this.activityWeakReference = WeakReference(activity)
@@ -424,24 +432,28 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
 
         override fun onSuccess(result: LocationEngineResult) {
 
-// The LocationEngineCallback interface's method which fires when the device's location has changed
-            locationFire.id=1837
+            // The LocationEngineCallback interface's method which fires when the device's location has changed
+            locationFire.id= reservationG.idVehicule
             locationFire.latitude=result.lastLocation?.latitude!!
             locationFire.longitude=result.lastLocation?.longitude!!
             locationFire.distance=TurfMeasurement.distance(Point.fromLngLat(lonDest, latDest),Point.fromLngLat(result.lastLocation?.longitude!!, result.lastLocation?.latitude!!) , TurfConstants.UNIT_KILOMETERS)
 
             myRef =
                 FirebaseDatabase.getInstance("https://mapstest-70c5d-default-rtdb.firebaseio.com")
-                    .getReference("message").child("1837")
+                    .getReference("message").child(locationFire.id.toString())
             myRef.setValue(locationFire)
-            if(locationFire.distance<0.2 && runCar){
+            if(locationFire.distance<0.1 && runCar){
+                latitude=locationFire.latitude
+                longitude= locationFire.longitude
                 runCar=false
                 val dialog = EndTrajetFragment()
                 dialog.show(supportFragmentManager, "customDialog5")
 
             }
-            if(ifStartTrajet){
+            if(ifStartTrajet && !ifEndTrajet){
                 currentDateOfDepart= Date()
+                button.setBackgroundColor(Color.parseColor("#FFFFCB00"))
+
                 var start = Time(currentDateOfDepart.hours,currentDateOfDepart.minutes ,currentDateOfDepart.seconds)
                 var format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 var date = format.parse(datebeginTrajet)
@@ -451,11 +463,26 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener
                     --start.hours
                     start.minutes += 60
                 }
+                 println("start "+start.hours+"start minute"+start.minutes)
+                println("end "+stop.hours+" end minute"+stop.minutes)
 
                 diff.minutes = start.minutes - stop.minutes
                 diff.hours = start.hours - stop.hours
-                tmp.text= "temp restan "+(70-(abs( diff.hours*60) + abs(diff.minutes)))
+                var rest=reservationG.tempsEstime-(abs( diff.hours*60) + abs(diff.minutes))
+                if(rest>0){
+                    tmp.text= "temp restant "+ rest+" min"
+                }else{
+
+                    button.setBackgroundColor(Color.parseColor("#FFE82E2E"))
+                    tmp.text= "Temp estimé dépassé"
+                    ifEndTrajet=true
+
+                }
                 println(abs( diff.hours*60) + abs(diff.minutes))
+            }
+            if(ifEndTrajet){
+                button.setBackgroundColor(Color.parseColor("#FFE82E2E"))
+                tmp.text= "Temp estimé dépassé"
             }
             result.getLastLocation()
         }

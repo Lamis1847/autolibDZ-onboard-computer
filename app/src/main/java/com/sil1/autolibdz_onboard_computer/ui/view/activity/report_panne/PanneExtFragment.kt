@@ -1,20 +1,14 @@
 package com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne
 
 import android.content.Context
-import android.content.Intent
-import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.findNavController
 import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.repositories.PanneRepository
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_panne_ext.*
 import kotlinx.android.synthetic.main.fragment_panne_ext.view.*
@@ -39,7 +33,8 @@ class PanneExtFragment : DialogFragment() {
             val lal = preferences?.getFloat("panneLal",1F)
 
             var reportPanne = PanneRepository.Companion
-            reportPanne.putPanne(requireContext(),1837, result, long, lal)
+            val id = preferences?.getInt("idVehicule", 0)
+            reportPanne.putPanne(requireContext(), id!!, result, long, lal)
 
             dismiss()
         }

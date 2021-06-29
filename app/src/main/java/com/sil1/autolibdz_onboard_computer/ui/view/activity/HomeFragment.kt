@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -15,12 +14,9 @@ import com.sil1.autolibdz_onboard_computer.R
 import com.sil1.autolibdz_onboard_computer.data.model.Reservation
 import com.sil1.autolibdz_onboard_computer.data.repositories.trajetRepository
 import com.sil1.autolibdz_onboard_computer.utils.reservationG
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.ReportPanneActivity
-import com.sil1.autolibdz_onboard_computer.ui.view.activity.suivi_etat.SuiviActivity
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
-import kotlinx.android.synthetic.main.fragment_suivi_one.*
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -54,21 +50,21 @@ class HomeFragment : Fragment() {
 
 
         conduireButton1.setOnClickListener {
-       /*     currentDT =simpleDateFormat.format(Date())
-            var startTrajetActivity = trajetRepository.Companion
-            reservationG.etat= "Active"
-            startTrajetActivity.startTrajet(
-                view, requireContext().applicationContext, reservationG, currentDT
-            )*/
+            /*     currentDT =simpleDateFormat.format(Date())
+                 var startTrajetActivity = trajetRepository.Companion
+                 reservationG.etat= "Active"
+                 startTrajetActivity.startTrajet(
+                     view, requireContext().applicationContext, reservationG, currentDT
+                 )*/
             view?.findNavController()?.navigate(R.id.action_homeFragment_to_homeStateOnDriveFragment)
         }
 
 
 
-        naviguerButton1.setOnClickListener {
+      /*  naviguerButton1.setOnClickListener {
             val intent = Intent(context, MapActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
     }
 

@@ -4,29 +4,38 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.data.repositories.PanneRepository
 import com.sil1.autolibdz_onboard_computer.data.repositories.SuiviRepository
+import com.sil1.autolibdz_onboard_computer.data.repositories.UpdateVehiculeRepository
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.MainActivity
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.report_panne.ReportPanneActivity
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_menu_bar.*
-import kotlinx.android.synthetic.main.fragment_suivi_one.*
+import kotlinx.android.synthetic.main.suivi_etat.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.NonCancellable.isActive
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class SuiviActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_suivi_one)
+        setContentView(R.layout.suivi_etat)
 
+        var preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         var vehiculeGet = SuiviRepository.Companion
-        vehiculeGet.vehicule(this.applicationContext, 1837)
+        var id = preferences.getInt("idVehicule", 0)
+        vehiculeGet.vehicule(this.applicationContext, id)
 
-        val preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        val limitVit = preferences?.getInt("limiteurVitesse", 0)
-        val pressionPneu = preferences?.getInt("pressionPneus", 0)
-        val chargeBatt = preferences?.getInt("chargeBatterie", 0)
-        val niveauHuile = preferences?.getInt("niveauMinimumHuile", 0)
+
+        var limitVit = preferences?.getInt("limiteurVitesse", 0)
+        var pressionPneu = preferences?.getInt("pressionPneus", 0)
+        var chargeBatt = preferences?.getInt("chargeBatterie", 0)
+        var niveauHuile = preferences?.getInt("niveauMinimumHuile", 0)
         val tempsRef = preferences?.getInt("tempsDeRefroidissement", 0)
         val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
         val etat = preferences?.getString("etat", "null")
@@ -45,6 +54,193 @@ class SuiviActivity : AppCompatActivity() {
             textView20.text = pressionHuile.toString()+" Bar"
             textView24.text = anomalie
             tempRealText.text = regVit.toString()+" KM/H"
+
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                if (s2.toInt()==2) {
+                    constraintLayout5.setBackgroundColor(Color.RED)
+                    var reportPanne = PanneRepository.Companion
+                    reportPanne.putPanne(this,id, "Batterie déchargé", (36.7059).toFloat(), (3.1712592).toFloat())
+                    textViewRealState.text = "batterie déchargée"
+                }
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 10000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                if (s2.toInt()==2) {
+                    constraintLayout5.setBackgroundColor(Color.RED)
+                    var reportPanne = PanneRepository.Companion
+                    reportPanne.putPanne(this,id, "Batterie déchargé", (36.7059).toFloat(), (3.1712592).toFloat())
+                    textViewRealState.text = "batterie déchargée"
+                }
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 180000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                if (s2.toInt()==2) {
+                    constraintLayout5.setBackgroundColor(Color.RED)
+                    var reportPanne = PanneRepository.Companion
+                    reportPanne.putPanne(this,id, "Batterie déchargé", (36.7059).toFloat(), (3.1712592).toFloat())
+                    textViewRealState.text = "batterie déchargée"
+                }
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 120000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                if (s2.toInt()==2) {
+                    constraintLayout5.setBackgroundColor(Color.RED)
+                    var reportPanne = PanneRepository.Companion
+                    reportPanne.putPanne(this,id, "Batterie déchargé", (36.7059).toFloat(), (3.1712592).toFloat())
+                    textViewRealState.text = "batterie déchargée"
+                }
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 60000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                if (s2.toInt()==2) {
+                    constraintLayout5.setBackgroundColor(Color.RED)
+                    var reportPanne = PanneRepository.Companion
+                    reportPanne.putPanne(this,id, "Batterie déchargé", (36.7059).toFloat(), (3.1712592).toFloat())
+                    textViewRealState.text = "batterie déchargée"
+                }
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 25000)
+
+            Handler().postDelayed({
+
+                preferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+                vehiculeGet = SuiviRepository.Companion
+                id = preferences.getInt("idVehicule", 0)
+                vehiculeGet.vehicule(this.applicationContext, id)
+
+                pressionPneu = preferences?.getInt("pressionPneus", 0)
+                var s1 = soustract(pressionPneu!!)
+                textView18.text = s1+" Bar"
+
+                chargeBatt = preferences?.getInt("chargeBatterie", 0)
+                var s2 = soustract(chargeBatt!!)
+                textView17.text = s2+" %"
+
+                if (s2.toInt()==2) {
+                    constraintLayout5.setBackgroundColor(Color.RED)
+                    var reportPanne = PanneRepository.Companion
+                    reportPanne.putPanne(this,id, "Batterie déchargé", (36.7059).toFloat(), (3.1712592).toFloat())
+                    textViewRealState.text = "batterie déchargée"
+                }
+
+                val pressionHuile= preferences?.getInt("pressionHuileMoteur", 0)
+                var s4 = soustract(pressionHuile!!)
+                textView20.text = s4+" Bar"
+
+                var changeEtat = UpdateVehiculeRepository.Companion
+                changeEtat.update(this,id , s4.toInt(), s2.toInt(), s1.toInt())
+            }, 30000)
 
         } else {
             constraintLayout5.setBackgroundColor(Color.RED)
@@ -68,5 +264,10 @@ class SuiviActivity : AppCompatActivity() {
             val myIntent = Intent(this, ReportPanneActivity::class.java)
             startActivity(myIntent)
         }
+    }
+
+    fun soustract(a : Int) : String {
+        val s = a-1
+        return s.toString()
     }
 }

@@ -12,6 +12,7 @@ import com.sil1.autolibdz_onboard_computer.data.api.ServiceProvider
 import com.sil1.autolibdz_onboard_computer.data.model.*
 import com.sil1.autolibdz_onboard_computer.data.repositories.CodePinRepository.Companion.putDouble
 import com.sil1.autolibdz_onboard_computer.ui.view.activity.HomeStateOnDriveFragment
+import com.sil1.autolibdz_onboard_computer.utils.idTrajet
 import com.sil1.autolibdz_onboard_computer.utils.ifStartTrajet
 import com.sil1.autolibdz_onboard_computer.utils.reservationG
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
@@ -57,6 +58,7 @@ class trajetRepository {
                         if (resp != null) {
                             with(sharedPref?.edit()) {
                                 this?.putInt("idTrajet", resp.idTrajet)
+                                idTrajet=resp.idTrajet
                                 this?.putString("dateBeginTrajet",dateDebut)
                                 this?.apply()
                             }
@@ -76,7 +78,6 @@ class trajetRepository {
         }
 
         fun finTrajet(
-            view: View?,
             context: Context,
             endTrajetBody: finTrajetBody
 

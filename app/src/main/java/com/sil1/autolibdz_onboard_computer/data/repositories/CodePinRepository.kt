@@ -1,6 +1,7 @@
 package com.sil1.autolibdz_onboard_computer.data.repositories
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -33,12 +34,13 @@ class CodePinRepository {
             context: Context,
             code: String
         ) {
-            var loginBody = CodePinBody(1837,code)
-
-            val loginRequest = api.codePinLogin(loginBody)
             val sharedPref = context.getSharedPreferences(
                 sharedPrefFile, Context.MODE_PRIVATE
             )
+            val id = sharedPref.getInt("idVehicule", 0)
+            var loginBody = CodePinBody(id,code)
+
+            val loginRequest = api.codePinLogin(loginBody)
 
             loginRequest.enqueue(object : Callback<CodePin> {
 
@@ -67,7 +69,10 @@ class CodePinRepository {
                                 this?.putDouble("borneDLal", resp.bornDepart.latitude)
                                 this?.putDouble("borneFLal", resp.bornDestination.latitude)
                                 this?.putDouble("borneFLong", resp.bornDestination.longitude)
+                                this?.putDouble("borneFLong", resp.bornDestination.longitude)
                                 this?.putInt("tempsRestant", resp.reservation.tempsEstime)
+                                this?.putDouble("prix estime", resp.reservation.prixEstime)
+
                                 this?.apply()
                             }
                         }
@@ -75,6 +80,8 @@ class CodePinRepository {
                         val myIntent = Intent(context, MainActivity::class.java)
 
                         context.startActivity(myIntent)
+                        (context as Activity).finish()
+
                     }
                 }
                 override fun onFailure(call: Call<CodePin>, t: Throwable) {

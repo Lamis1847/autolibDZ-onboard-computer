@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.activity.login.CodePinFragment"
+    tools:context=".ui.view.activity.login.LoginActivity"
     android:background="@color/white">
 
     <ImageView
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewCodePin"
+        android:id="@+id/textViewCodeV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/codepin"
@@ -79,7 +79,7 @@
         android:windowSoftInputMode="stateHidden"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCodePin"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCodeV"
         app:pinBackgroundDrawable="@drawable/mycodepin"
         app:pinBackgroundIsSquare="false"
         app:pinRepeatedHint="X" />

@@ -4,7 +4,7 @@
 
     <!--Login PAGE-->
     <string name="codepin">Veuillez entrer le code PIN</string>
-    <string name="maintenance">Espace Maintenance</string>
+    <string name="vehicule">Espace réservé au véhicule</string>
     <!--END OF Login PAGE-->
 
     <!-- TODO: Remove or change this placeholder text -->

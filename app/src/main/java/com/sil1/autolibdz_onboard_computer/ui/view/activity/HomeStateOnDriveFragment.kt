@@ -1,5 +1,6 @@
 package com.sil1.autolibdz_onboard_computer.ui.view.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.sil1.autolibdz_onboard_computer.R
+import com.sil1.autolibdz_onboard_computer.data.repositories.UpdateVehiculeRepository
+import com.sil1.autolibdz_onboard_computer.data.repositories.quitterRepository
+import com.sil1.autolibdz_onboard_computer.ui.view.activity.login.LoginActivity
 import com.sil1.autolibdz_onboard_computer.utils.reservationG
 import com.sil1.autolibdz_onboard_computer.utils.sharedPrefFile
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -45,8 +49,13 @@ class HomeStateOnDriveFragment : Fragment() {
             startActivity(intent)
         }
         quitterVehiculeButton2.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_homeStateOnDriveFragment_to_homeStateOnLateFragment)
 
+            var quitter = quitterRepository.Companion
+            quitter.quite(requireContext(), reservationG.idReservation)
+
+            val myIntent = Intent(context, LoginActivity::class.java)
+            context?.startActivity(myIntent)
+            (context as Activity).finish()
         }
 
     }
